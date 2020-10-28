@@ -29,15 +29,14 @@ def index():
     response = make_response(redirect(url_for('hello')))
     session['user_ip'] = request.remote_addr
 
-    return response
+    return "Hello"
 
 
 @app.route("/hello")
-@login_required
 def hello():
     context = {
         'user_ip': session.get('user_ip'),
         'todos': [],
         'username': current_user.id,
     }
-    return render_template('hello.html', **context)
+    return "Hello"
