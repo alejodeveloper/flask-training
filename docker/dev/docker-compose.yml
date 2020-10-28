@@ -1,0 +1,54 @@
+version: '2'
+services:
+  # flask
+  flask-app:
+    image: flask-app/dev
+    container_name: flask-app
+    entrypoint: sh docker-entrypoint.sh
+    environment:
+      - FLASK_APP=main.py
+#    depends_on:
+#      - oracle-db-container
+    ports:
+      - "5000:5000"
+    networks:
+      - flask-app-nt
+  # oracle
+#  oracle-db-container:
+#    image: oracle/database:12.1.0.2-ee
+#    container_name: db-oracle
+#    environment:
+#      - ORACLE_ALLOW_REMOTE=true
+#
+#    volumes:
+#    - /home/oracle/oradata:/opt/oracle/oradata # persistent oracle database data.
+#
+#    ports:
+#      - 1521:1521
+#      - 8080:8080
+#      - 5500:5500
+#    networks:
+#      - flask-app-nt
+
+  #rabbit
+  rabbit:
+    hostname: rabbit
+    image: rabbitmq:latest
+    container_name: weather-rabbit
+    networks:
+      - flask-app-nt
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=mypass
+    ports:
+      - "5673:5672"
+  # redis
+  redis:
+    image: redis
+    container_name: weather-redis
+    networks:
+      - flask-app-nt
+
+networks:
+  flask-app-nt:
+    external: true

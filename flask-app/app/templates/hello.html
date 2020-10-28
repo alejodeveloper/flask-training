@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% if username %}
+    <h1> Welcome {{ username | capitalize }}</h1>
+{% endif %}
+
+{% if user_ip %}
+    <h1> Hello from platzi {{ user_ip }}</h1>
+{% else %}
+    <a href="{{ url_for('index') }}"></a>
+{% endif %}
+
+<ul>
+    {% for todo in todos %}
+        <li>{{ todo }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
