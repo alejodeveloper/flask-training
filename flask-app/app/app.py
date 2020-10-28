@@ -3,7 +3,6 @@ from flask_bootstrap import Bootstrap
 
 from flask_login import LoginManager
 
-from .auth.blueprint import auth_blueprint
 from .config import Config
 from .models import UserModel
 
@@ -21,6 +20,5 @@ def create_app():
     Bootstrap(app)
     app.config.from_object(Config)
     login_manger.init_app(app)
-    app.register_blueprint(auth_blueprint)
 
     return app

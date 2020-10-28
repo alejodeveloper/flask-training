@@ -3,7 +3,6 @@ import unittest
 from flask import request, make_response, redirect, render_template, session, url_for
 from flask_login import login_required, current_user
 
-from app.firestore_service import get_user_todos
 from app.app import create_app
 
 app = create_app()
@@ -38,7 +37,7 @@ def index():
 def hello():
     context = {
         'user_ip': session.get('user_ip'),
-        'todos': get_user_todos(current_user.id),
+        'todos': [],
         'username': current_user.id,
     }
     return render_template('hello.html', **context)
