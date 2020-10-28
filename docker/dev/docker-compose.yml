@@ -34,7 +34,7 @@ services:
   rabbit:
     hostname: rabbit
     image: rabbitmq:latest
-    container_name: weather-rabbit
+    container_name: flask-rabbit
     networks:
       - flask-app-nt
     environment:
@@ -45,7 +45,7 @@ services:
   # redis
   redis:
     image: redis
-    container_name: weather-redis
+    container_name: flask-redis
     networks:
       - flask-app-nt
 

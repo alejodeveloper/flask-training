@@ -5,11 +5,9 @@
         <img alt="Brand" src="...">
       </a>
       <ul class="nav navbar-nav">
-        {% if current_user.is_authenticated %}
-          <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
-        {% else %}
-          <li><a href="{{ url_for('auth.login') }}">login</a></li>
-        {% endif %}
+
+          <li><a href="{{ url_for('hello') }}">Logout</a></li>
+          <li><a href="{{ url_for('hello') }}">login</a></li>
       </ul>
     </div>
   </div>
